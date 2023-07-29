@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+        theme: {
+            extend: {
+            colors: {
+                clifford: '#da373d',
+            }
+            }
+        }
+        }
+    </script>
+    <title>Practica Api Front</title>
+</head>
+<body>
+<header class="h-28 ml-2 mr-2 bg-gradient-to-l from-purple-950 to-purple-800">
+    <h1 class="text-3xl text-start pl-8 pt-7 text-pink-100">
+        PANEL ADMINISTRADOR
+    </h1>
+</header>
+<!--                 ACTIVIDADES PACIENTES-->
+<main class="container w-4/5 h-screen mt-10 ml-auto mr-auto">
+    <section class="container relative flex flex-col">
+        <button id="buttonAgregar" class="relative w-2/4 h-16 ml-auto mr-auto bg-gradient-to-l from-purple-950 to-purple-800 text-pink-100 text-xl">Agregar Paciente<span id="spanAgregar" class="absolute right-0 top-2"><img src="./assets/arrow.svg" alt="" srcset=""></span></button>
+        <form id="formAgregar" class="container relative -top-16 hidden w-2/4 ml-auto mr-auto">
+            <div class="flex flex-col">
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Nombre</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="nombre" id="paciente" placeholder="Ingresa tu nombre"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Apellido</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="apellido" id="apellido" placeholder="Ingresa tu Apellido"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Documento</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="documento" id="documento" placeholder="Ingresa tu Documento"></label>
+                </fieldset>
+                <fieldset class="border border-purple-950 text-purple-950 w-auto h-auto flex flex-row flex-wrap justify-between p-2">
+                    <legend>Domicilio</legend>
+                    <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950 w-full">
+                        <legend>Calle</legend>
+                        <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="calle" id="calle" placeholder="Ingresa la Calle"></label>
+                    </fieldset>
+                    <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950 w-7/12">
+                        <legend>Altura</legend>
+                        <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="altura" id="altura" placeholder="Ingresa la altura"></label>
+                    </fieldset>
+                    <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950 w-2/5">
+                        <legend>Localidad</legend>
+                        <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="localidad" id="localidad" placeholder="Ingresa la localidad"></label>
+                    </fieldset>
+                </fieldset>
+                <button class="w-1/3 h-9 rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto" type="submit">Agregar</button>
+
+            </div>
+        </form>
+    </section>
+
+    <!--                 MODIFICAR PACIENTE-->
+    <section class="container relative flex flex-col">
+        <button id="buttonModificar" class="relative w-2/4 h-16 ml-auto mr-auto mt-20 bg-gradient-to-l from-purple-950 to-purple-800 text-pink-100 text-xl">Modificar Paciente<span id="spanModificado" class="absolute right-0 top-2"><img src="./assets/arrow.svg" alt="" srcset=""></span></button>
+        <form id="formModificar" class="container relative -top-16 hidden w-2/4 ml-auto mr-auto">
+            <div class="flex flex-col">
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>ID</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="id" id="idModificado" placeholder="Ingresa ID"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Nombre</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="nombre" id="pacienteModificado" placeholder="Ingresa tu nombre"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Apellido</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="apellido" id="apellidoModificado" placeholder="Ingresa tu Apellido"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Documento</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="documento" id="documentoModificado" placeholder="Ingresa tu Documento"></label>
+                </fieldset>
+                <fieldset class="border border-purple-950 text-purple-950 w-auto h-auto flex flex-row flex-wrap justify-between p-2">
+                    <legend>Domicilio</legend>
+                    <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950 w-full">
+                        <legend>Calle</legend>
+                        <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="calle" id="calleModificado" placeholder="Ingresa la Calle"></label>
+                    </fieldset>
+                    <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950 w-7/12">
+                        <legend>Altura</legend>
+                        <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="altura" id="alturaModificado" placeholder="Ingresa la altura"></label>
+                    </fieldset>
+                    <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950 w-2/5">
+                        <legend>Localidad</legend>
+                        <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="localidad" id="localidadModificado" placeholder="Ingresa la localidad"></label>
+                    </fieldset>
+                </fieldset>
+                <button class="w-1/3 h-9 rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto" type="submit">Modificar</button>
+
+            </div>
+        </form>
+    </section>
+
+
+    <section class="flex flex-col container mt-20 ml-auto mr-auto w-2/3">
+        <button id="botonMostrarPaciente" class="p-2 w-auto h-auto rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto">Mostrar pacientes</button>
+        <div id="contenedor-items" class="conteiner flex flex-row w-auto h-auto mb-20 flex-wrap">
+        </div>
+
+
+
+
+        <!-- TEMPLATES -->
+        <template id="items">
+            <article class="ml-auto mr-auto flex flex-row conteiner mt-5 w-full h-auto bg-gradient-to-br from-purple-600 to-pruple-950rounded-lg p-3">
+                <p id="id" class="text-center text-yellow-400"><span class="text-start text-pink-100">ID </span></p>
+                <p id="nombrePaciente" class="text-center text-yellow-400"><span class="text-pink-100">NOMBRE </span></p>
+                <p id="apellidoPaciente" class="text-center text-yellow-400"><span class="text-pink-100">APELLIDO </span></p>
+
+                <div class="container flex flex-row-reverse">
+                    <button class="btn w-auto h-auto bg-gradient-to-br  from-red-500 to-red-900 font-semibold text-white rounded-md p-3 m-3 align-middle text-sm">ELIMINAR</button>
+
+                </div>
+            </article>
+        </template>
+        <template id="no-items">
+            <article class="ml-auto mr-auto flex flex-row conteiner mt-20 w-auto h-auto bg-gradient-to-br from-red-500 to-red-900 rounded-lg p-3">
+                <p class="text-lg text-white font-semibold p-2">
+                    NO HAY PACIENTES EN LA BASE DE DATOS
+                </p>
+            </article>
+        </template>
+    </section>
+
+
+
+    <!--                 ACTIVIDADES ODONTOLOGO-->
+    <section class="container relative flex flex-col">
+        <button id="buttonAgregarOdontologo" class="relative w-2/4 h-16 ml-auto mr-auto mt-20  bg-gradient-to-l from-purple-950 to-purple-800 text-pink-100 text-xl">Agregar Odontologo<span id="spanAgregarOdontologo" class="absolute right-0 top-2"><img src="./assets/arrow.svg" alt="" srcset=""></span></button>
+        <form id="formAgregarOdontologo" class="container relative -top-16 hidden w-2/4 ml-auto mr-auto">
+            <div class="flex flex-col">
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Nombre</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="nombre" id="odontologo" placeholder="Ingresa tu nombre"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Apellido</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="apellido" id="apellidoOdontologo" placeholder="Ingresa tu Apellido"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-blue-950">
+                    <legend>Matricula</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="matricula" id="matriculaOdontologo" placeholder="Ingresa tu Matricula"></label>
+                </fieldset>
+
+
+                <button class="w-1/3 h-9 rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto" type="submit">Agregar</button>
+            </div>
+        </form>
+    </section>
+
+
+
+    <!--                 MODIFICAR  ODONTOLOGO-->
+    <section class="container relative flex flex-col">
+        <button id="buttonModificarO" class="relative w-2/4 h-16 ml-auto mr-auto mt-20 bg-gradient-to-l from-purple-950 to-purple-800 text-pink-100 text-xl">Modificar Odontologo<span id="spanModificadoO" class="absolute right-0 top-2"><img src="./assets/arrow.svg" alt="" srcset=""></span></button>
+        <form id="formModificarO" class="container relative -top-16 hidden w-2/4 ml-auto mr-auto">
+            <div class="flex flex-col">
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>ID</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="id" id="idModificadoOdontologo" placeholder="Ingresa ID"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Nombre</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="nombre" id="nombreModificadoO" placeholder="Ingresa tu nombre"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Apellido</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="apellido" id="apellidoModificadoO" placeholder="Ingresa tu Apellido"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Matricula</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="matricula" id="matriculaModificado" placeholder="Ingresa tu Documento"></label>
+                </fieldset>
+
+                <button class="w-1/3 h-9 rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto" type="submit" id="modificarO">Modificar</button>
+
+            </div>
+        </form>
+    </section>
+
+
+
+    <section class="flex flex-col container mt-20 ml-auto mr-auto w-2/3">
+        <button id="botonMostrarOdontologo" class="p-2 w-auto h-auto rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto">Mostrar Odontologos</button>
+        <div id="contenedor-items-ondotologos" class="conteiner flex flex-row w-auto h-auto flex-wrap">
+        </div>
+
+
+        <!-- TEMPLATES -->
+        <template id="items-odontologos">
+            <article class="ml-auto mr-auto flex flex-row conteiner mt-5 w-full h-auto bg-gradient-to-br from-purple-600 to-pruple-950 rounded-lg p-3">
+                <p id="id-Odontologo" class="text-center text-yellow-400"><span class="text-start text-pink-100">ID </span></p>
+                <p id="nombreOdontologo" class="text-center text-yellow-400"><span class="text-pink-100">NOMBRE </span></p>
+                <p id="apellidoOdontologos" class="text-center text-yellow-400"><span class="text-pink-100">APELLIDO </span></p>
+
+                <div class="container flex flex-row-reverse">
+                    <button class="btn w-auto h-auto bg-gradient-to-br  from-red-500 to-red-900 font-semibold text-white rounded-md p-3 m-3 align-middle text-sm">ELIMINAR</button>
+                    <!--                    <button class="w-auto h-auto bg-green-800 text-white font-semibold rounded-md p-3 m-3 align-middle text-sm">MODIFICAR</button>-->
+                </div>
+            </article>
+        </template>
+        <template id="no-items-odontologo">
+            <article class="ml-auto mr-auto flex flex-row conteiner mt-20 w-auto h-auto bg-gradient-to-br from-red-500 to-red-900 rounded-lg p-3">
+                <p class="text-lg text-white font-semibold p-2">
+                    NO HAY ODONTOLOGOS EN LA BASE DE DATOS
+                </p>
+            </article>
+        </template>
+    </section>
+
+
+    <!--                 ACTIVIDADES TURNO-->
+    <section class="container relative flex flex-col">
+        <button id="buttonAgregarTurno" class="relative w-2/4 h-16 ml-auto mr-auto mt-20  bg-gradient-to-l from-purple-950 to-purple-800 text-pink-100 text-xl">Agregar Turno<span id="spanAgregarTurno" class="absolute right-0 top-2"><img src="./assets/arrow.svg" alt="" srcset=""></span></button>
+        <form id="formAgregarTurno" class="container relative -top-16 hidden w-2/4 ml-auto mr-auto">
+            <div class="flex flex-col">
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Id Paciente</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="idPaciente" id="idPaciente" placeholder="Ingresa el id del paciente"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Id Odontologo</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="idOd" id="idOd" placeholder="Ingresa el id del odontologo"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-blue-950">
+                    <legend>Fecha y hora del turno</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="fechaHora" id="fechaHora" placeholder="Ingresa la fecha y hora del turno"></label>
+                </fieldset>
+
+
+                <button class="w-1/3 h-9 rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto" type="submit">Agregar</button>
+            </div>
+        </form>
+    </section>
+
+
+
+    <!--                 MODIFICAR  TURNO-->
+    <section class="container relative flex flex-col">
+        <button id="buttonModificarT" class="relative w-2/4 h-16 ml-auto mr-auto mt-20 bg-gradient-to-l from-purple-950 to-purple-800 text-pink-100 text-xl">Modificar Turno<span id="spanModificadoT" class="absolute right-0 top-2"><img src="./assets/arrow.svg" alt="" srcset=""></span></button>
+        <form id="formModificarT" class="container relative -top-16 hidden w-2/4 ml-auto mr-auto">
+            <div class="flex flex-col">
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Dni Paciente</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="dniPaciente" id="dniPacienteMod" placeholder="Ingresa el dni del paciente"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-purple-950">
+                    <legend>Matricula Odontologo</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="text" name="matriculaOd" id="matriculaOdMod" placeholder="Ingresa la matricula del odontologo"></label>
+                </fieldset>
+                <fieldset class="border focus-within:border-2 focus-within:font-medium border-purple-950 text-blue-950">
+                    <legend>Fecha y hora del turno</legend>
+                    <label><input class="p-1 w-full outline-none text-rose-900" type="Date" name="fechaHora" id="fechaHoraMod" placeholder="Ingresa la fecha y hora del turno"></label>
+                </fieldset>
+
+                <button class="w-1/3 h-9 rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto" type="submit" id="modificarT">Modificar</button>
+
+            </div>
+        </form>
+    </section>
+
+
+
+    <section class="flex flex-col container mt-20 ml-auto mr-auto w-2/3">
+        <button id="botonMostrarTurnos" class="p-2 w-auto h-auto rounded-md hover:bg-purple-800 bg-purple-950 mt-5 text-pink-100 ml-auto mr-auto">Mostrar Turnos</button>
+        <div id="contenedor-items-turnos" class="conteiner flex flex-row w-auto h-auto flex-wrap">
+        </div>
+
+
+        <!-- TEMPLATES -->
+        <template id="items-turnos">
+            <article class="ml-auto mr-auto flex flex-row conteiner mt-5 w-full h-auto bg-gradient-to-br from-purple-600 to-pruple-950 rounded-lg p-3">
+                <p id="id-turno" class="text-center text-yellow-400"><span class="text-start text-pink-100">ID </span></p>
+                <p id="paciente-turno" class="text-center text-yellow-400"><span class="text-pink-100">PACIENTE </span></p>
+                <p id="odontologo-turno" class="text-center text-yellow-400"><span class="text-pink-100">ODONTOLOGO </span></p>
+                <p id="fecha-hora-turno" class="text-center text-yellow-400"><span class="text-pink-100">FECHA Y HORA </span></p>
+
+                <div class="container flex flex-row-reverse">
+                    <button class="btn w-auto h-auto bg-gradient-to-br  from-red-500 to-red-900 font-semibold text-white rounded-md p-3 m-3 align-middle text-sm">ELIMINAR</button>
+                    <!--                    <button class="w-auto h-auto bg-green-800 text-white font-semibold rounded-md p-3 m-3 align-middle text-sm">MODIFICAR</button>-->
+                </div>
+            </article>
+        </template>
+        <template id="no-items-turnos">
+            <article class="ml-auto mr-auto flex flex-row conteiner mt-20 w-auto h-auto bg-gradient-to-br from-red-500 to-red-900 rounded-lg p-3">
+                <p class="text-lg text-white font-semibold p-2">
+                    NO HAY TURNOS EN LA BASE DE DATOS
+                </p>
+            </article>
+        </template>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
